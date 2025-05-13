@@ -102,7 +102,9 @@ public class TaskService {
         task.setTitle(taskCreateForm.getTitle());
         task.setDescription(taskCreateForm.getDescription());
         task.setCompletionData(taskCreateForm.getCompletionData());
-        task.setReminderTimes(Mapper.FormToReminderTimeList(taskCreateForm.getReminderTimes(), task));
+        for (ReminderTime reminderTime : Mapper.FormToReminderTimeList(taskCreateForm.getReminderTimes(), task)) {
+            task.addReminderTime(reminderTime);
+        }
     }
 
     @Transactional
